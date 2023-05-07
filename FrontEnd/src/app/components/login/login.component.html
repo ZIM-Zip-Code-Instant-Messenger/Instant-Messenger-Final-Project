@@ -2,4 +2,15 @@
 <h2>
 <fa-icon class='ghost-Icon' [icon]="faGhost"></fa-icon>
 </h2>
-<p>login works!</p>
+<form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+    <div class="form-group">
+      <label for="username">Username:</label>
+      <input type="text" class="form-control" id="username" name="username" [(ngModel)]="user.username" required>
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" required>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
+  </form>
+<p>are you sure this is the login page?</p>

@@ -8,6 +8,7 @@ import { RoutingModule } from './app.router.module';
 import { MessengerMainComponent } from 'src/app/components/messenger-main/messenger-main.component';
 import { MessengerSidebarComponent } from 'src/app/components/messenger-sidebar/messenger-sidebar.component';
 import { MessengerTextboxComponent } from 'src/app/components/messenger-textbox/messenger-textbox.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -23,6 +24,7 @@ import { MessengerTextboxComponent } from 'src/app/components/messenger-textbox/
     BrowserModule,
     FontAwesomeModule,
     RoutingModule,
+    FormsModule
     ],
   providers: [],
   bootstrap: [BaseComponent]
