@@ -16,14 +16,16 @@ import { MessengerTextboxComponent } from 'src/app/components/messenger-textbox/
       LoginComponent,
       MessengerMainComponent,
       MessengerSidebarComponent,
-      MessengerTextboxComponent
+      MessengerTextboxComponent,
+      BaseComponent
   ],
   imports: [
     BrowserModule,
     FontAwesomeModule,
-    RoutingModule
-  ],
+    RoutingModule,
+    ],
   providers: [],
   bootstrap: [BaseComponent]
 })
-export class AppModule { }
+export class AppModule {
+ }
