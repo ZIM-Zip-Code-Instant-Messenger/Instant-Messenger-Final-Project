@@ -6,5 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./messenger-textbox.component.scss']
 })
 export class MessengerTextboxComponent {
+  messages: string[] = [];
+
+  constructor() { }
+
+  sendMesseage(message: string) {
+    if (message.trim()){
+      this.messages.push(message)
+    }
+  }
 
 }

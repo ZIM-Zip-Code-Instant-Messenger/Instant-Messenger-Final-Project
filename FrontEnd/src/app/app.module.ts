@@ -9,6 +9,7 @@ import { MessengerMainComponent } from 'src/app/components/messenger-main/messen
 import { MessengerSidebarComponent } from 'src/app/components/messenger-sidebar/messenger-sidebar.component';
 import { MessengerTextboxComponent } from 'src/app/components/messenger-textbox/messenger-textbox.component';
 import { FormsModule } from '@angular/forms';
+import { CreateAccountComponent } from './components/create-account/create-account.component';
 
 
 
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
       MessengerMainComponent,
       MessengerSidebarComponent,
       MessengerTextboxComponent,
-      BaseComponent
+      BaseComponent,
+      CreateAccountComponent
   ],
   imports: [
     BrowserModule,

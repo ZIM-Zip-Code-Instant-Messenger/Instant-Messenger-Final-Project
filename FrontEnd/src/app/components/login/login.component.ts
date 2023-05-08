@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { faGhost } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -14,11 +15,14 @@ user = {
   username: '',
   password: ''
 };
-constructor(){ }
+constructor(private router: Router){ }
 onSubmit(form: NgForm){
   if (form.valid){
     //Handle form submission here
     console.log('Form submitted:', this.user)
+
+    //sends users to messenger main path when successful login. still need to add login validation
+    this.router.navigate(['/messenger-main']); 
   }
 }
 }

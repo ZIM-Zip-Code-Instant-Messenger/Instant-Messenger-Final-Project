@@ -1,16 +1,25 @@
-<h1>Zip Code Instant Messenger</h1>
-<h2>
-<fa-icon class='ghost-Icon' [icon]="faGhost"></fa-icon>
-</h2>
-<form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
-    <div class="form-group">
-      <label for="username">Username:</label>
-      <input type="text" class="form-control" id="username" name="username" [(ngModel)]="user.username" required>
+<div class="login-container">
+    <div class="element-container">
+      <h1>Zip Code Instant Messenger</h1>
     </div>
-    <div class="form-group">
-      <label for="password">Password:</label>
-      <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" required>
+    <div class="element-container">
+      <h2>
+        <fa-icon class='ghost-Icon' [icon]="faGhost"></fa-icon>
+      </h2>
     </div>
-    <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
-  </form>
-<p>are you sure this is the login page?</p>
+    <div class="element-container">
+      <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm">
+        <div class="form-group">
+          <label for="username">Username:</label>
+          <input type="text" class="form-control" id="username" name="username" [(ngModel)]="user.username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" required>
+        </div>
+        <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Login</button>
+      </form>
+    </div>
+  </div>
+  
+<p>New to ZIM? <a routerLink="/create-account">Create Account</a></p>

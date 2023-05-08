@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-messenger-main',
@@ -6,5 +7,4 @@ import { Component } from '@angular/core';
   styleUrls: ['./messenger-main.component.scss']
 })
 export class MessengerMainComponent {
-
 }

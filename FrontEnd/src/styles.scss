@@ -18,6 +18,23 @@ h2{
     font-size: 72px;
     
 }  
+p{
+    font-family: Helvetica, Arial, sans-serif;
+}
 .ghostIcon {
     animation: fadeIn 1s ease-in-out;
-  } 
+  }
+  
+  .login-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; // Use the full viewport height
+    font-family: Helvetica, Arial, sans-serif;
+  }
+  
+  .element-container {
+    text-align: center;
+    margin-bottom: 1px; // Add some spacing between elements
+  }
