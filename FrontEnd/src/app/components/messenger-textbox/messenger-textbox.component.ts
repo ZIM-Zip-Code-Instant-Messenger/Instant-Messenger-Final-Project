@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RootLevelService } from 'src/services/root-level.service';
 
 @Component({
   selector: 'app-messenger-textbox',
@@ -8,9 +9,22 @@ import { Component } from '@angular/core';
 export class MessengerTextboxComponent {
   messages: string[] = [];
 
-  constructor() { }
+  constructor(private rootLevelService: RootLevelService) { }
 
-  sendMesseage(message: string) {
+  ngOnInit(): void {
+    const apiUrl = 'https://api.example.com/data'; // Replace with your API URL
+    this.rootLevelService.getData(apiUrl).subscribe(
+      data => {
+        console.log('API data:', data);
+      },
+      error => {
+        console.error('Error fetching data:', error);
+      }
+    );
+  }
+  
+
+  sendMessage(message: string) {
     if (message.trim()){
       this.messages.push(message)
     }

@@ -10,6 +10,10 @@ import { MessengerSidebarComponent } from 'src/app/components/messenger-sidebar/
 import { MessengerTextboxComponent } from 'src/app/components/messenger-textbox/messenger-textbox.component';
 import { FormsModule } from '@angular/forms';
 import { CreateAccountComponent } from './components/create-account/create-account.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { HttpClientModule } from '@angular/common/http';
+import { RootLevelService } from 'src/services/root-level.service';
+
 
 
 
@@ -18,17 +22,19 @@ import { CreateAccountComponent } from './components/create-account/create-accou
       LoginComponent,
       MessengerMainComponent,
       MessengerSidebarComponent,
-      MessengerTextboxComponent,
       BaseComponent,
-      CreateAccountComponent
+      CreateAccountComponent,
+      MessengerTextboxComponent
   ],
   imports: [
     BrowserModule,
     FontAwesomeModule,
     RoutingModule,
-    FormsModule
+    FormsModule,
+    MatToolbarModule,
+    HttpClientModule
     ],
-  providers: [],
+  providers: [RootLevelService],
   bootstrap: [BaseComponent]
 })
 export class AppModule {
