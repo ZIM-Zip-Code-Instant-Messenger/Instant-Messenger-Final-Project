@@ -1,7 +1,5 @@
-package com.ZIM.Zipcode.Instant.Messager.student;
+package com.ZIM.Zipcode.Instant.Messager.User;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,18 +9,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "api/v1/student")
-public class StudentController {
+public class UserController {
 
-    private final StudentService studentService;
+    private final UserService userService;
     @Autowired
-    public StudentController(StudentService studentService){
-        this.studentService = studentService;
+    public UserController(UserService userService){
+        this.userService = userService;
 
     }
 
     //this class will have all of the resources for our API
     @GetMapping
-   public List<Student> getStudents() {
-    return studentService.getStudents();
+   public List<User> getUsers() {
+    return userService.getUsers();
    }
 }

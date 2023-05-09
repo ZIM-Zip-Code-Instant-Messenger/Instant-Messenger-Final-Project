@@ -10,7 +10,7 @@ public class ZipcodeInstantMessagerApplication {
 		SpringApplication.run(ZipcodeInstantMessagerApplication.class, args);
 	}
 
-//rest controller is making the the method below print out to the API
+//rest controller is making the method below print out to the API
 			
 	
 
