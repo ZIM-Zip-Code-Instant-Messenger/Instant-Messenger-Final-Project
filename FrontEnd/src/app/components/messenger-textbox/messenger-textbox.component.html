@@ -1,0 +1,12 @@
+<div class="chat-container">
+    <div class="messages">
+      <div *ngFor="let message of messages" class="message">
+        {{ message }}
+      </div>
+    </div>
+    <form (ngSubmit)="sendMessage(newMessage.value); newMessage.value = ''" class="message-form">
+      <input #newMessage type="text" placeholder="Type here...">
+      <button type="submit">Send</button>
+    </form>
+  </div>
+<p>messenger-textbox works!</p>
