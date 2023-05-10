@@ -46,32 +46,30 @@ h1{
     font-family: Helvetica, Arial, sans-serif;
     font-size: 48px;
 }
-h2{
-    text-align: center;
-    font-weight: bold;
-    font-family: Helvetica, Arial, sans-serif;
-    font-size: 72px;
-    
-}  
-p{
-    font-family: Helvetica, Arial, sans-serif;
-}
-.ghostIcon {
-    animation: fadeIn 1s ease-in-out;
+.ghost-Icon {
+    animation: fadeIn 6s ease-in-out;
+
   }
   
   .login-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    min-height: 100vh; // Use the full viewport height
     font-family: Helvetica, Arial, sans-serif;
+    min-height: calc(100vh - 50px);
   }
   
   .element-container {
     text-align: center;
     margin-bottom: 1px; // Add some spacing between elements
+  }
+
+  .form-group {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+    width: 250px;
+    margin-bottom: 4px;
   }
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
