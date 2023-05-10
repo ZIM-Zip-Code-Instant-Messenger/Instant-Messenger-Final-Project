@@ -23,6 +23,8 @@ onSubmit(form: NgForm){
 
     //sends users to messenger main path when successful login. still need to add login validation
     this.router.navigate(['/messenger-main']); 
+
+    //need method to validate user and then send to Spring
   }
 }
 }
