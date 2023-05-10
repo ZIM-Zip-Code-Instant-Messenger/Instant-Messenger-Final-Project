@@ -6,7 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./messenger-sidebar.component.scss']
 })
 export class MessengerSidebarComponent {
-chats: string[] = ["Colin", "Zach", "Hiep", "Andre"]; //creating a chats array
+chats: string[] = ["Colin", "Zach", "Hiep", "Andre"]; //this needs to be changed to an object with id 
 addChat(){
   this.chats.push("Heip") //need an input box to define new chat
 }
