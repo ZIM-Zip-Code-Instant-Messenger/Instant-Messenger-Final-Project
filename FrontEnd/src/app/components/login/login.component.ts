@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { faGhost } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+
 
 
 
