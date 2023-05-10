@@ -1,4 +1,5 @@
-import { NgModule } from '@angular/core';
+
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { LoginComponent } from './components/login/login.component';
@@ -9,6 +10,9 @@ import { MessengerMainComponent } from 'src/app/components/messenger-main/messen
 import { MessengerSidebarComponent } from 'src/app/components/messenger-sidebar/messenger-sidebar.component';
 import { MessengerTextboxComponent } from 'src/app/components/messenger-textbox/messenger-textbox.component';
 import { FormsModule } from '@angular/forms';
+import { NavbarComponent } from './navbar/navbar.component';
+
+
 import { CreateAccountComponent } from './components/create-account/create-account.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
@@ -29,6 +33,7 @@ import {
       BaseComponent,
       CreateAccountComponent,
       MessengerTextboxComponent
+      
   ],
   imports: [
     BrowserModule,
@@ -38,6 +43,7 @@ import {
     MatToolbarModule,
     HttpClientModule,
     SocialLoginModule
+    
     ],
   providers: [
     RootLevelService,
@@ -69,5 +75,5 @@ import {
 })
 export class AppModule {
  }
-//comment comment comment
+
 

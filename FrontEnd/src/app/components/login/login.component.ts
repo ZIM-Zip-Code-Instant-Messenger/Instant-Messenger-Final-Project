@@ -1,10 +1,9 @@
-import { Component} from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { faGhost } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
-
-
-
+import { SocialAuthService } from "@abacritt/angularx-social-login";
+import { FacebookLoginProvider } from "@abacritt/angularx-social-login";
 
 
 @Component({
@@ -13,19 +12,19 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.scss']
 })
 export class LoginComponent {
-faGhost = faGhost;
-user = {
-  username: '',
-  password: ''
-};
-constructor(private router: Router){ }
-onSubmit(form: NgForm){
-  if (form.valid){
-    //Handle form submission here
-    console.log('Form submitted:', this.user)
 
-    //sends users to messenger main path when successful login. still need to add login validation
-    this.router.navigate(['/messenger-main']); 
+  constructor(private authService: SocialAuthService) { }
+
+  signInWithFB(): void {
+    this.authService.signIn(FacebookLoginProvider.PROVIDER_ID);
   }
+
+  signOut(): void {
+    this.authService.signOut();
+  }
+
 }
-}
+
+
+
+
