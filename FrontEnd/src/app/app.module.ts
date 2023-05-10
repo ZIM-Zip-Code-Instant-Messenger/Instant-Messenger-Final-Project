@@ -14,7 +14,11 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { RootLevelService } from 'src/services/root-level.service';
 
-
+import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
+import {
+  GoogleLoginProvider,
+  FacebookLoginProvider
+} from '@abacritt/angularx-social-login';
 
 
 @NgModule({
@@ -32,10 +36,38 @@ import { RootLevelService } from 'src/services/root-level.service';
     RoutingModule,
     FormsModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    SocialLoginModule
     ],
-  providers: [RootLevelService],
-  bootstrap: [BaseComponent]
+  providers: [
+    RootLevelService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider(
+              'clientId'
+            )
+          },
+          {
+            id: FacebookLoginProvider.PROVIDER_ID,
+            provider: new FacebookLoginProvider('clientId')
+          }
+        ],
+        onError: (err) => {
+          console.error(err);
+        }
+      } as SocialAuthServiceConfig,
+
+    }
+  ],
+    
+  bootstrap: [BaseComponent] 
 })
 export class AppModule {
  }
+//comment comment comment
+
