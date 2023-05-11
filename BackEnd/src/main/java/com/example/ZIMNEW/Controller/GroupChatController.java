@@ -1,5 +1,5 @@
 
-package com.example.ZIMNEW.Chat;
+package com.example.ZIMNEW.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -13,34 +13,37 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.ZIMNEW.Model.GroupChat;
+import com.example.ZIMNEW.Service.GroupChatService;
+
 @RestController
 @RequestMapping("/chat")
-public class ChatController {
+public class GroupChatController {
     @Autowired
-    private ChatService service;
+    private GroupChatService service;
 
-    public ChatController(ChatService service) {
+    public GroupChatController(GroupChatService service) {
         this.service = service;
     }
 
     @GetMapping("")
-    public ResponseEntity<Iterable<Chat>> index() {
+    public ResponseEntity<Iterable<GroupChat>> index() {
         return new ResponseEntity<>(service.index(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Chat> show(@PathVariable Long id) {
+    public ResponseEntity<GroupChat> show(@PathVariable Long id) {
         return new ResponseEntity<>(service.show(id), HttpStatus.OK);
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Chat> create(@RequestBody Chat employee) {
-        return new ResponseEntity<>(service.create(employee), HttpStatus.CREATED);
+    public ResponseEntity<GroupChat> create(@RequestBody GroupChat groupchat) {
+        return new ResponseEntity<>(service.create(groupchat), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Chat> update(@PathVariable("id") Long id, @RequestBody Chat employee) {
-        return new ResponseEntity<>(service.update(id, employee), HttpStatus.OK);
+    public ResponseEntity<GroupChat> update(@PathVariable("id") Long id, @RequestBody GroupChat groupchat) {
+        return new ResponseEntity<>(service.update(id, groupchat), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

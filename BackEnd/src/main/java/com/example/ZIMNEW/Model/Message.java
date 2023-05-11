@@ -1,8 +1,10 @@
-package com.example.ZIMNEW.Message;
+package com.example.ZIMNEW.Model;
 
 import java.security.Timestamp;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -10,7 +12,8 @@ import javax.persistence.Table;
 @Table(name = "message")
 public class Message {
     @Id
-    private Long groupchatid;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column
     private String message;
     @Column
@@ -19,19 +22,19 @@ public class Message {
     public Message() {
     }
 
-    public Message(Long groupid, String message, Timestamp time) {
-        this.groupchatid = groupid;
+    public Message(Long id, String message, Timestamp time) {
+        this.id = id;
         this.message = message;
         this.time = time;
 
     }
 
-    public Long getGroupchatid() {
-        return groupchatid;
+    public Long getId() {
+        return id;
     }
 
-    public void setGroupchatid(Long groupid) {
-        this.groupchatid = groupid;
+    public void setGroupchatid(Long id) {
+        this.id = id;
     }
 
     public String getMessage() {

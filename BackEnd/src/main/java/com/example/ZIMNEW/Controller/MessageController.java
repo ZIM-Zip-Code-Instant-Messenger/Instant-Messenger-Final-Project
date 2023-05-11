@@ -1,4 +1,4 @@
-package com.example.ZIMNEW.Message;
+package com.example.ZIMNEW.Controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.example.ZIMNEW.Model.Message;
+import com.example.ZIMNEW.Service.MessageService;
 
 @RestController
 @RequestMapping("/message")
@@ -33,13 +36,13 @@ public class MessageController {
     }
 
     @PostMapping("/create")
-    public ResponseEntity<Message> create(@RequestBody Message employee) {
-        return new ResponseEntity<>(service.create(employee), HttpStatus.CREATED);
+    public ResponseEntity<Message> create(@RequestBody Message message) {
+        return new ResponseEntity<>(service.create(message), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Message> update(@PathVariable("id") Long id, @RequestBody Message employee) {
-        return new ResponseEntity<>(service.update(id, employee), HttpStatus.OK);
+    public ResponseEntity<Message> update(@PathVariable("id") Long id, @RequestBody Message message) {
+        return new ResponseEntity<>(service.update(id, message), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")

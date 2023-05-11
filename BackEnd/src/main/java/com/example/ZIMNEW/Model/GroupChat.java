@@ -1,4 +1,4 @@
-package com.example.ZIMNEW.Chat;
+package com.example.ZIMNEW.Model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "chat")
-public class Chat {
+public class GroupChat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,10 +17,10 @@ public class Chat {
     @Column(name = "name")
     private String name;
 
-    public Chat() {
+    public GroupChat() {
     }
 
-    public Chat(Long id, String name) {
+    public GroupChat(Long id, String name) {
         this.id = id;
         this.name = name;
     }

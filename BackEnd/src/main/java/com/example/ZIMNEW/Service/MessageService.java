@@ -1,7 +1,10 @@
-package com.example.ZIMNEW.Message;
+package com.example.ZIMNEW.Service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.ZIMNEW.Model.Message;
+import com.example.ZIMNEW.Repository.MessageRepository;
 
 @Service
 public class MessageService {
@@ -24,9 +27,9 @@ public class MessageService {
         return repository.save(message);
     }
 
-    public Message update(Long id, Message employee) {
+    public Message update(Long id, Message message) {
         Message originalMessage = repository.findById(id).get();
-        originalMessage.setMessage(employee.getMessage());
+        originalMessage.setMessage(message.getMessage());
         return repository.save(originalMessage);
     }
 

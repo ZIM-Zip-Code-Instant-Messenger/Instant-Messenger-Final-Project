@@ -1,31 +1,35 @@
-package com.example.ZIMNEW.Chat;
+package com.example.ZIMNEW.Service;
 
 import org.springframework.stereotype.Service;
+
+import com.example.ZIMNEW.Model.GroupChat;
+import com.example.ZIMNEW.Repository.GroupChatRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Service
-public class ChatService {
+public class GroupChatService {
     @Autowired
-    private ChatRepository repository;
+    private GroupChatRepository repository;
 
-    public ChatService(ChatRepository repository) {
+    public GroupChatService(GroupChatRepository repository) {
         this.repository = repository;
     }
 
-    public Iterable<Chat> index() {
+    public Iterable<GroupChat> index() {
         return repository.findAll();
     }
 
-    public Chat show(Long id) {
+    public GroupChat show(Long id) {
         return repository.findById(id).get();
     }
 
-    public Chat create(Chat employee) {
+    public GroupChat create(GroupChat employee) {
         return repository.save(employee);
     }
 
-    public Chat update(Long id, Chat employee) {
-        Chat originalChat = repository.findById(id).get();
+    public GroupChat update(Long id, GroupChat employee) {
+        GroupChat originalChat = repository.findById(id).get();
         originalChat.setName(employee.getName());
         return repository.save(originalChat);
     }
