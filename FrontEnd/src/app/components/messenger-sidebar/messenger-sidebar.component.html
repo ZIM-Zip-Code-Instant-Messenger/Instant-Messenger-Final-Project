@@ -1,0 +1,7 @@
+<div class="sidebar-container">
+    <div (click)="openTextBox(chat)" *ngFor="let chat of chats" class="message">
+        <span>{{chat}}</span>
+        <button (click)="removeChat(chat); $event.stopPropagation()">X</button>
+    </div>
+    <button (click)="addChat()">+</button>
+</div>
