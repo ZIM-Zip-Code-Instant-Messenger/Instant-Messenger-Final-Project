@@ -43,7 +43,7 @@ public class GroupChatController {
         }
     }
 
-    @PostMapping("/create/message1")
+    @PostMapping("/add/message1")
     public ResponseEntity<Message> addMessage2(@RequestBody Message message) throws IOException {
         return new ResponseEntity<Message>(service.addMessage2(message), HttpStatus.CREATED);
     }
@@ -79,7 +79,7 @@ public class GroupChatController {
     }
 
     @GetMapping("/firstUserName/{username}")
-    public ResponseEntity<?> getChatByFirstUser(@PathVariable String userName) {
+    public ResponseEntity<?> getChatByFirstUserName(@PathVariable String userName) {
         try {
             HashSet<GroupChat> chat = this.service.getChatByFirstUserName(userName);
             return new ResponseEntity<>(chat, HttpStatus.OK);
@@ -89,7 +89,7 @@ public class GroupChatController {
     }
 
     @GetMapping("/secondUserName/{username}")
-    public ResponseEntity<?> getChatBySecondUser(@PathVariable String userName) {
+    public ResponseEntity<?> getChatBySecondUserName(@PathVariable String userName) {
         try {
             HashSet<GroupChat> chat = this.service.getChatBySecondUserName(userName);
             return new ResponseEntity<>(chat, HttpStatus.OK);

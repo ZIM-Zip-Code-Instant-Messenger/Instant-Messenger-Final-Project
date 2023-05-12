@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Chat, User, Message } from '../app/interfaces';
+import { Chat as GroupChat, User, Message } from '../app/interfaces';
 import { Observable } from 'rxjs';
 
 
@@ -9,44 +9,38 @@ import { Observable } from 'rxjs';
 })
 export class RootLevelService {
 
-  baseUrl = "http://localhost:51374" //Backend base url
-
-  usersList: User[] | undefined;
+  baseUrl = "http://localhost:8080";
 
   constructor(private http: HttpClient) { }
 
-  addChat(chat: Chat): Observable<void> {
-    return this.http.post<void>(this.baseUrl + "/chatcontroller/add", chat); //post requests take 2 params
+
+  updateChat(message: Message, chatId: any): Observable<Object> {
+    return this.http.put(this.baseUrl + "/chats/message/" + `${chatId}`, message);
   }
 
-  getAllUserChats(): Observable<Chat[]>{
-    return this.http.get<Chat[]>(this.baseUrl + "/chatcontroller/all")
+  getChatById(chatId: any) {
+    return this.http.get<GroupChat>(this.baseUrl + "/chats/" + chatId)
   }
 
-  getChatById(id: number): Observable<Chat>{
-    return this.http.get<Chat>(this.baseUrl + "/chatcontroller/" + id)
+  addMessageToChatRoom(message: Message): Observable<Object> {
+    return this.http.post(this.baseUrl + "/chats/add/message1", message);
   }
 
-  getChatByFirstUser(username: string): Observable<{[key:string]: Chat}> {
-    return this.http.get<{[key:string]: Chat}> (this.baseUrl + "/chatcontroller/firstUserName/" + username)
+  getAllMessagesByChatId(chatId: any) {
+    return this.http.get<Message[]>(this.baseUrl + "/chats/all/messages/from/chat/" + chatId)
   }
 
-  getChatBySecondUser(username: string): Observable<{[key:string]: Chat}> {
-    return this.http.get<{[key:string]: Chat}> (this.baseUrl + "/chatcontroller/secondUserName/" + username)
+  createChatRoom(chat: GroupChat): Observable<Object> {
+    return this.http.post(this.baseUrl + "/chats/add", chat);
   }
 
-  getChatByFirstOrSecondUser(username: string): Observable<{[key:string]: Chat}> {
-    return this.http.get<{[key:string]: Chat}> (this.baseUrl + "/chatcontroller/getChatByFirstUserNameOrSecondUserName/" + username)
+  getChatByFirstUserNameAndSecondUserName(firstUserName: String, secondUserName: String) {
+    return this.http.get<GroupChat>(this.baseUrl + "/chats/getChatByFirstUserNameAndSecondUserName" + '?firstUserName=' + firstUserName + '&secondUserName=' + secondUserName)
   }
 
-  getChatByFirstAndSecondUser(firstUserName: string, secondUserName: string): Observable<{[key:string]: Chat}> {
-    return this.http.get<{[key:string]: Chat}> (this.baseUrl + "/chatcontroller/getChatByFirstUserNameAndSecondUserName?=firstUserName=" + firstUserName + "&secondUserName=" + secondUserName)
+  getChatByFirstUserNameOrSecondUserName(username: any) {
+    return this.http.get<GroupChat>(this.baseUrl + "/chats/getChatByFirstUserNameOrSecondUserName/" + username)
   }
-
-  putMessage(chat: Chat): Observable<Chat> {
-    return this.http.put<Chat>(this.baseUrl + "/chatcontroller/message/", chat);
-  }
-
 
 
 
@@ -54,14 +48,16 @@ export class RootLevelService {
 
 
   getActiveUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.baseUrl + "usercontroller/getallusers/")
+    return this.http.get<User[]>(this.baseUrl + "usercontroller/getall/")
   }
 
   postUser(user: User): Observable<void> {
-    return this.http.post<void> (this.baseUrl + "usercontroller/add", user)
+    return this.http.post<void> (this.baseUrl + "usercontroller/add/", user)
   }
 
   getByUserName(username: string): Observable<User>{
     return this.http.get<User> (this.baseUrl + "usercontroller/getbyusername/" + username)
   }
+
+
 }

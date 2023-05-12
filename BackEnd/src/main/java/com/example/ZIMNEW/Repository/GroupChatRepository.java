@@ -10,12 +10,11 @@ import com.example.ZIMNEW.Model.GroupChat;
 @Repository
 public interface GroupChatRepository extends JpaRepository<GroupChat, Integer> {
 
-    HashSet<GroupChat> getChatByFirstUser(String username);
+    HashSet<GroupChat> getChatByFirstUserName(String username);
 
     HashSet<GroupChat> getChatBySecondUserName(String username);
 
     HashSet<GroupChat> getChatByFirstUserNameAndSecondUserName(String firstUserName, String secondUserName);
 
     HashSet<GroupChat> getChatBySecondUserNameAndFirstUserName(String firstUserName, String secondUserName);
-
 }
