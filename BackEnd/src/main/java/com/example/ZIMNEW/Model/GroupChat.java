@@ -18,7 +18,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class GroupChat {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long chatId;
+    private int chatId;
     private String firstUserName;
     private String secondUserName;
 
@@ -29,11 +29,11 @@ public class GroupChat {
     public GroupChat() {
     }
 
-    public Long getChatId() {
+    public int getChatId() {
         return chatId;
     }
 
-    public void setChatId(Long chatId) {
+    public void setChatId(int chatId) {
         this.chatId = chatId;
     }
 

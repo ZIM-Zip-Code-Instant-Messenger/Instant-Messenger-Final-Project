@@ -33,7 +33,7 @@ public class UserController {
     @GetMapping("/getall")
     public ResponseEntity<List<User>> getAll() throws IOException {
         try {
-            return new ResponseEntity<List<User>>(service.getAll(), HttpStatus.OK);
+            return new ResponseEntity<List<User>>(service.getall(), HttpStatus.OK);
         } catch (Exception e) {
             return new ResponseEntity("User not Found", HttpStatus.NOT_FOUND);
         }

@@ -1,75 +1,32 @@
 package com.example.ZIMNEW.Service;
 
-import org.springframework.stereotype.Service;
-
-import com.example.ZIMNEW.Model.GroupChat;
-import com.example.ZIMNEW.Model.Message;
-import com.example.ZIMNEW.Repository.GroupChatRepository;
-
 import java.util.HashSet;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.ZIMNEW.Model.GroupChat;
+import com.example.ZIMNEW.Model.Message;
 
-@Service
-public class GroupChatService {
-    @Autowired
-    private GroupChatRepository repository;
+public interface GroupChatService {
 
-    public GroupChatService(GroupChatRepository repository) {
-        this.repository = repository;
-    }
+    public GroupChat addChat(GroupChat chat) throws Exception;
 
+    List<GroupChat> findallchats() throws Exception;
 
-    public GroupChat show(Long id) {
-        return repository.findById(id).get();
-    }
+    GroupChat getById(int id) throws Exception;
 
-    public GroupChat create(GroupChat employee) {
-        return repository.save(employee);
-    }
+    HashSet<GroupChat> getChatByFirstUserName(String username) throws Exception;
 
-    public GroupChat update(Long id, GroupChat employee) {
-        GroupChat originalChat = repository.findById(id).get();
-        originalChat.setName(employee.getName());
-        return repository.save(originalChat);
-    }
+    HashSet<GroupChat> getChatBySecondUserName(String username) throws Exception;
 
-    public Boolean delete(Long id) {
-        repository.deleteById(id);
-        return true;
-    }
+    HashSet<GroupChat> getChatByFirstUserNameOrSecondUserName(String username) throws Exception;
 
-    public List<GroupChat> findEveryChat() {
-        return null;
-    }
+    HashSet<GroupChat> getChatByFirstUserNameAndSecondUserName(String firstUserName, String secondUserName)
+            throws Exception;
 
+    GroupChat addMessage(Message add, int chatId) throws Exception;
 
-    public GroupChat getById(Long id) {
-        return null;
-    }
+    Message addMessage2(Message message);
 
+    List<Message> getAllMessagesInChat(int chatId) throws Exception;
 
-    public List<Message> getAllMessagesInChat(Long id) {
-        return null;
-    }
-
-
-    public HashSet<GroupChat> getChatByFirstUser(String userName) {
-        return null;
-    }
-
-    public HashSet<GroupChat> getChatBySecondUser(String userName) {
-        return null;
-    }
-
-
-    public HashSet<GroupChat> getChatByFirstUserNameOrSecondUserName(String username) {
-        return null;
-    }
-
-
-    public HashSet<GroupChat> getChatByFirstUserNameAndSecondUserName(String firstUserName, String secondUserName) {
-        return null;
-    }
 }

@@ -30,7 +30,7 @@ public class GroupChatServicelmpl implements GroupChatService {
 
     @Override
     public List<GroupChat> findallchats() throws Exception {
-        if(chatRepository.findAll()).isEmpty()) {
+        if (chatRepository.findAll().isEmpty()) {
             throw new Exception("No chat exists exists in repository");
         } else {
             return chatRepository.findAll();
@@ -87,7 +87,8 @@ public class GroupChatServicelmpl implements GroupChatService {
     }
 
     @Override
-    public HashSet<GroupChat> getChatByFirstUserNameAndSecondUserName(String firstUserName, String secondUserName) {
+    public HashSet<GroupChat> getChatByFirstUserNameAndSecondUserName(String firstUserName, String secondUserName)
+            throws Exception {
         HashSet<GroupChat> chat = chatRepository.getChatByFirstUserNameAndSecondUserName(firstUserName, secondUserName);
         HashSet<GroupChat> chat1 = chatRepository.getChatBySecondUserNameAndFirstUserName(firstUserName,
                 secondUserName);
