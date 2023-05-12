@@ -32,14 +32,14 @@ public class GroupChatController {
 
     public GroupChatController(GroupChatService service) {
         this.service = service;
-        
+
     }
 
     @PostMapping("/add")
     public ResponseEntity<GroupChat> createChat(@RequestBody GroupChat groupchat) throws IOException {
         try {
-    return new ResponseEntity<>(service.create(groupchat), HttpStatus.CREATED);
-        }catch (ChatAlreadyExistException e) {
+    return new ResponseEntity<GroupChat>(service.create(groupchat), HttpStatus.CREATED);
+        }catch (Exception e) {
             return new ResponseEntity(body: "Chat already exists", HttpStatus.CONFLICT);
         }
     }
@@ -53,7 +53,7 @@ public class GroupChatController {
     public ResponseEntity<List<GroupChat>> getEveryChat() {
         try {
             return new ResponseEntity<List<GroupChat>>(service.findEveryChat(), HttpStatus.OK);
-        }catch (NoChatExists e) {
+        }catch (Exception e) {
             return new ResponseEntity(body: "No chats exist", HttpStatus.CONFLICT);
         }
     }
@@ -65,7 +65,7 @@ public class GroupChatController {
             chat.setId(id);
             List<Message> messageList = this.service.getAllMessagesInChat(id);
             return ResponseEntity.ok(messageList);
-        } catch (NoChatExists e) {
+        } catch (Exception e) {
             return new ResponseEntity(body: "No chats exist", HttpStatus.CONFLICT);
         }
     }
@@ -84,7 +84,7 @@ public class GroupChatController {
         try {
             HashSet<GroupChat> chat = this.service.getChatByFirstUser(userName);
             return new ResponseEntity<>(chat, HttpStatus.OK);
-        } catch (ChatNotFoundException e) {
+        } catch (Exception e) {
             return new ResponseEntity("Chat Not Found", HttpStatus.NOT_FOUND)
         }
     }
@@ -94,7 +94,7 @@ public class GroupChatController {
         try {
             HashSet<GroupChat> chat = this.service.getChatBySecondUser(userName);
             return new ResponseEntity<>(chat, HttpStatus.OK);
-        } catch (ChatNotFoundException e) {
+        } catch (Exception e) {
             return new ResponseEntity("Chat Not Found", HttpStatus.NOT_FOUND)
         }
     }
@@ -105,28 +105,30 @@ public class GroupChatController {
         try {
             HashSet<GroupChat> chat = this.service.getChatByFirstUserNameOrSecondUserName(username);
             return new ResponseEntity<>(chat, HttpStatus.OK);
-        } catch (ChatNotFoundException e) {
+        } catch (Exception e) {
             return new ResponseEntity("Chat Not Exits", HttpStatus.CONFLICT);
 
+        }
     }
-}
-
 
     @GetMapping("/getChatByFirstUserNameAndSecondUserName")
-    public ResponseEntity<?> getChatByFirstUserNameAndSecondUserName(@RequestParam("firstUserName") String firstUserName, @RequestParam("secondUserName") String secondUserName){
+    public ResponseEntity<?> getChatByFirstUserNameAndSecondUserName(
+            @RequestParam("firstUserName") String firstUserName,
+            @RequestParam("secondUserName") String secondUserName) {
 
         try {
-            HashSet<GroupChat> chatByBothEmail = this.service.getChatByFirstUserNameAndSecondUserName(firstUserName, secondUserName);
+            HashSet<GroupChat> chatByBothEmail = this.service.getChatByFirstUserNameAndSecondUserName(firstUserName,
+                    secondUserName);
             return new ResponseEntity<>(chatByBothEmail, HttpStatus.OK);
-        } catch (ChatNotFoundException e) {
+        } catch (Exception e) {
             return new ResponseEntity("Chat Not Exits", HttpStatus.NOT_FOUND);
         }
     }
 
-
     @PutMapping("/message/{chatId}")
-    public ResponseEntity<GroupChat> addMessage(@RequestBody Message add , @PathVariable int chatId) throws ChatNotFoundException {
-        return new ResponseEntity<GroupChat>(service.addMessage(add,chatId), HttpStatus.OK);
+    public ResponseEntity<GroupChat> addMessage(@RequestBody Message add, @PathVariable int chatId)
+            throws ChatNotFoundException {
+        return new ResponseEntity<GroupChat>(service.addMessage(add, chatId), HttpStatus.OK);
     }
 
-    }
+}

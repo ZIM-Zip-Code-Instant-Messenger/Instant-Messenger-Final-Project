@@ -11,13 +11,12 @@ public class User {
     @Id
     private String userName;
 
-    public User(){
+    public User() {
 
     }
 
-    public User(String userName){
-
-    this.userName = userName;
+    public User(String userName) {
+        this.userName = userName;
     }
 
     public String getUserName() {
@@ -28,6 +27,4 @@ public class User {
         this.userName = userName;
     }
 
-    
-    
 }

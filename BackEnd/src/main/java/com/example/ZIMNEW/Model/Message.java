@@ -1,56 +1,80 @@
 package com.example.ZIMNEW.Model;
 
 import java.security.Timestamp;
+import java.sql.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
-@Table(name = "message")
 public class Message {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-    @Column
-    private String message;
-    @Column
-    private Timestamp time;
+    private int id;
+
+    private String senderEmail;
+    private Date time = new Date(System.currentTimeMillis());
+    private String replymessage;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "chat_id")
+    private GroupChat chat;
 
     public Message() {
     }
 
-    public Message(Long id, String message, Timestamp time) {
+    public Message(int id, String senderEmail, Date time, String replymessage, GroupChat chat) {
         this.id = id;
-        this.message = message;
+        this.senderEmail = senderEmail;
         this.time = time;
-
+        this.replymessage = replymessage;
+        this.chat = chat;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setGroupchatid(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public String getMessage() {
-        return message;
+    public String getSenderEmail() {
+        return senderEmail;
     }
 
-    public void setMessage(String message) {
-        this.message = message;
+    public void setSenderEmail(String senderEmail) {
+        this.senderEmail = senderEmail;
     }
 
-    public Timestamp getTime() {
+    public Date getTime() {
         return time;
     }
 
-    public void setTime(Timestamp time) {
+    public void setTime(Date time) {
         this.time = time;
+    }
+
+    public String getReplymessage() {
+        return replymessage;
+    }
+
+    public void setReplymessage(String replymessage) {
+        this.replymessage = replymessage;
+    }
+
+    public GroupChat getChat() {
+        return chat;
+    }
+
+    public void setChat(GroupChat chat) {
+        this.chat = chat;
     }
 
 }
