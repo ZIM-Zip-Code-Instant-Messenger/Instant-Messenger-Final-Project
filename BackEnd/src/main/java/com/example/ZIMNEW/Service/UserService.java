@@ -1,17 +1,20 @@
 package com.example.ZIMNEW.Service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.ZIMNEW.Model.Message;
+import com.example.ZIMNEW.Model.User;
 import com.example.ZIMNEW.Repository.MessageRepository;
 
 @Service
-public class MessageService {
+public class UserService {
     @Autowired
     private MessageRepository repository;
 
-    public MessageService(MessageRepository repository) {
+    public UserService(MessageRepository repository) {
         this.repository = repository;
     }
 
@@ -36,5 +39,9 @@ public class MessageService {
     public Boolean delete(Long id) {
         repository.deleteById(id);
         return true;
+    }
+
+    public List<User> getAll() {
+        return null;
     }
 }

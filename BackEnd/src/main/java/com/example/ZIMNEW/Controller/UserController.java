@@ -34,7 +34,7 @@ public class UserController {
     public ResponseEntity<List<User>> getAll() throws IOException {
         try{
             return new ResponseEntity<List<User>>(service.getAll(), HttpStatus.OK);
-        }catch (UserNotFoundException e){
+        }catch (Exception e){
             return ResponseEntity(body: "User not Found", HttpStatus.NOT_FOUND)
         }
     }
@@ -43,7 +43,7 @@ public class UserController {
         public ResponseEntity<User> addUser(@RequestBody User user) throws IOException {
             try{
                 return new ResponseEntity<User>(service.addUser(user), HttpStatus.CONFLICT);
-            } catch (UserAlreadyExist e){
+            } catch (Exception e){
                 return new ResponseEntity(body:"User already exists", HttpStatus.CONFLICT);
             }
         }
@@ -52,7 +52,7 @@ public class UserController {
     public ResponseEntity<User> getUserByUserName(@PathVariable String username) throws IOException {
         try {
             return new ResponseEntity<User>(service.getUserByUserName(username), HttpStatus.OK);
-        } catch (UserNotFoundException e) {
+        } catch (Exception e) {
             return new ResponseEntity(body: "User not Found", HttpStatus.NOT_FOUND);
         }
     }
