@@ -24,7 +24,7 @@ import com.example.ZIMNEW.Service.GroupChatService;
 
 @RestController
 @CrossOrigin(origins = "*")
-@RequestMapping("/chat")
+@RequestMapping("/groupchatcontroller")
 public class GroupChatController {
     @Autowired
     private GroupChatService service;

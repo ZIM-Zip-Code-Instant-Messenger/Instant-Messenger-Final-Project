@@ -10,9 +10,15 @@ import { Observable } from 'rxjs';
 export class RootLevelService {
 
   baseUrl = "http://localhost:8080";
+  usersList: User[] = [];
 
   constructor(private http: HttpClient) { }
 
+  // Existing methods...
+
+  getData(apiUrl: string): Observable<any> {
+    return this.http.get(apiUrl);
+  }
 
   updateChat(message: Message, chatId: any): Observable<Object> {
     return this.http.put(this.baseUrl + "/chats/message/" + `${chatId}`, message);
