@@ -29,6 +29,13 @@ public class GroupChat {
     public GroupChat() {
     }
 
+    public GroupChat(int chatId, String firstUserName, String secondUserName, List<Message> messageList) {
+        this.chatId = chatId;
+        this.firstUserName = firstUserName;
+        this.secondUserName = secondUserName;
+        this.messageList = messageList;
+    }
+
     public int getChatId() {
         return chatId;
     }

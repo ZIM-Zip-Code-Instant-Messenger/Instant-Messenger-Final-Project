@@ -49,7 +49,7 @@ public class GroupChatServicelmpl implements GroupChatService {
 
     @Override
     public HashSet<GroupChat> getChatByFirstUserName(String username) throws Exception {
-        HashSet<GroupChat> chat = chatRepository.getChatByFirstUser(username);
+        HashSet<GroupChat> chat = chatRepository.getChatByFirstUserName(username);
 
         if (chat.isEmpty()) {
             throw new Exception("User not found");
@@ -72,13 +72,13 @@ public class GroupChatServicelmpl implements GroupChatService {
 
     @Override
     public HashSet<GroupChat> getChatByFirstUserNameOrSecondUserName(String username) throws Exception {
-        HashSet<GroupChat> chat = chatRepository.getChatByFirstUser(username);
+        HashSet<GroupChat> chat = chatRepository.getChatByFirstUserName(username);
         HashSet<GroupChat> chat1 = chatRepository.getChatBySecondUserName(username);
 
         chat1.addAll(chat);
 
         if (chat.isEmpty() && chat1.isEmpty()) {
-            throw new Exception("Chat not found");
+            throw new Exception();
         } else if (chat1.isEmpty()) {
             return chat;
         } else {
@@ -93,10 +93,8 @@ public class GroupChatServicelmpl implements GroupChatService {
         HashSet<GroupChat> chat1 = chatRepository.getChatBySecondUserNameAndFirstUserName(firstUserName,
                 secondUserName);
 
-        chat1.addAll(chat);
-
         if (chat.isEmpty() && chat1.isEmpty()) {
-            throw new Exception("Chat not found");
+            throw new Exception();
         } else if (chat.isEmpty()) {
             return chat1;
         } else {
