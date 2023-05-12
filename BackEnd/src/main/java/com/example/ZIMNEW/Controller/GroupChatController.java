@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,64 +37,64 @@ public class GroupChatController {
     @PostMapping("/add")
     public ResponseEntity<GroupChat> createChat(@RequestBody GroupChat groupchat) throws IOException {
         try {
-    return new ResponseEntity<GroupChat>(service.create(groupchat), HttpStatus.CREATED);
-        }catch (Exception e) {
-            return new ResponseEntity(body: "Chat already exists", HttpStatus.CONFLICT);
+            return new ResponseEntity<GroupChat>(service.addChat(groupchat), HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity("Chat Already Exist", HttpStatus.CONFLICT);
         }
     }
 
     @PostMapping("/create/message1")
     public ResponseEntity<Message> addMessage2(@RequestBody Message message) throws IOException {
-        return new ResponseEntity<Message>(service.addMessage2(message), HttpStatus.CREATED)
+        return new ResponseEntity<Message>(service.addMessage2(message), HttpStatus.CREATED);
     }
 
     @GetMapping("/all")
     public ResponseEntity<List<GroupChat>> getEveryChat() {
         try {
-            return new ResponseEntity<List<GroupChat>>(service.findEveryChat(), HttpStatus.OK);
-        }catch (Exception e) {
-            return new ResponseEntity(body: "No chats exist", HttpStatus.CONFLICT);
+            return new ResponseEntity<List<GroupChat>>(service.findallchats(), HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity("List not found", HttpStatus.CONFLICT);
         }
     }
 
     @GetMapping("/all/messages/from/chat/{chatid}")
-    public ResponseEntity<?> getAllMessagesInChat(@PathVariable Long id) {
+    public ResponseEntity<?> getAllMessagesInChat(@PathVariable int id) {
         try {
             GroupChat chat = new GroupChat();
-            chat.setId(id);
+            chat.setChatId(id);
             List<Message> messageList = this.service.getAllMessagesInChat(id);
             return ResponseEntity.ok(messageList);
         } catch (Exception e) {
-            return new ResponseEntity(body: "No chats exist", HttpStatus.CONFLICT);
+            return new ResponseEntity("Message List not found", HttpStatus.CONFLICT);
         }
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<GroupChat> getChatById(@PathVariable Long id){
-        try{
+    public ResponseEntity<GroupChat> getChatById(@PathVariable int id) {
+        try {
             return new ResponseEntity<GroupChat>(service.getById(id), HttpStatus.OK);
-        } catch (ChatNotFoundException e) {
-            return new ResponseEntity("Chat Not Found", HttpStatus.NOT_FOUND)
+        } catch (Exception e) {
+            return new ResponseEntity("Chat Not Found", HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping("/firstUserName/{username}")
-    public ResponseEntity<?> getChatByFirstUser(@PathVariable String userName){
+    public ResponseEntity<?> getChatByFirstUser(@PathVariable String userName) {
         try {
-            HashSet<GroupChat> chat = this.service.getChatByFirstUser(userName);
+            HashSet<GroupChat> chat = this.service.getChatByFirstUserName(userName);
             return new ResponseEntity<>(chat, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity("Chat Not Found", HttpStatus.NOT_FOUND)
+            return new ResponseEntity("Chat Not Found", HttpStatus.NOT_FOUND);
         }
     }
 
     @GetMapping("/secondUserName/{username}")
-    public ResponseEntity<?> getChatBySecondUser(@PathVariable String userName){
+    public ResponseEntity<?> getChatBySecondUser(@PathVariable String userName) {
         try {
-            HashSet<GroupChat> chat = this.service.getChatBySecondUser(userName);
+            HashSet<GroupChat> chat = this.service.getChatBySecondUserName(userName);
             return new ResponseEntity<>(chat, HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity("Chat Not Found", HttpStatus.NOT_FOUND)
+            return new ResponseEntity("Chat Not Found", HttpStatus.NOT_FOUND);
         }
     }
 
@@ -127,7 +126,7 @@ public class GroupChatController {
 
     @PutMapping("/message/{chatId}")
     public ResponseEntity<GroupChat> addMessage(@RequestBody Message add, @PathVariable int chatId)
-            throws ChatNotFoundException {
+            throws Exception {
         return new ResponseEntity<GroupChat>(service.addMessage(add, chatId), HttpStatus.OK);
     }
 
