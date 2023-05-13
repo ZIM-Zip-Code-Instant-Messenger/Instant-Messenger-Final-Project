@@ -14,6 +14,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { RootLevelService } from 'src/services/root-level.service';
 
+import { OAuthModule } from "angular-oauth2-oidc";
+
 
 
 
@@ -22,7 +24,7 @@ import { RootLevelService } from 'src/services/root-level.service';
       LoginComponent,
       MessengerMainComponent,
       MessengerSidebarComponent,
-      BaseComponent,
+     
       CreateAccountComponent,
       MessengerTextboxComponent
   ],
@@ -32,8 +34,10 @@ import { RootLevelService } from 'src/services/root-level.service';
     RoutingModule,
     FormsModule,
     MatToolbarModule,
-    HttpClientModule
+    HttpClientModule,
+    OAuthModule.forRoot()
     ],
+
   providers: [RootLevelService],
   bootstrap: [BaseComponent]
 })
