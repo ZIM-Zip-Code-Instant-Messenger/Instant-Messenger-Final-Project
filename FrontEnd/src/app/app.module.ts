@@ -24,7 +24,7 @@ import { OAuthModule } from "angular-oauth2-oidc";
       LoginComponent,
       MessengerMainComponent,
       MessengerSidebarComponent,
-      BaseComponent,
+     
       CreateAccountComponent,
       MessengerTextboxComponent
   ],
