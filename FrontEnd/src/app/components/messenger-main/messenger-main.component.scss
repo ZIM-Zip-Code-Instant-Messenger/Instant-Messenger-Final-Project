@@ -1,0 +1,13 @@
+.container {
+    display: flex;
+  }
+  
+  app-messenger-textbox {
+    flex: 2;
+    /* Messenger textbox styles */
+  }
+  
+  app-messenger-sidebar {
+    width: 200px;
+    /* Messenger sidebar styles */
+  }

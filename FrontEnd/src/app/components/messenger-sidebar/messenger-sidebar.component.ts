@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-messenger-sidebar',
@@ -7,6 +7,16 @@ import { Component } from '@angular/core';
 })
 export class MessengerSidebarComponent {
 chats: string[] = ["Colin", "Zach", "Hiep", "Andre"]; //this needs to be changed to an object with id 
+
+@Input() username: string = '';
+  messages: string[] = [];
+
+  sendMessage(message: string) {
+    if (message.trim()) {
+      this.messages.push(this.username + ': ' + message);
+    }
+  }
+
 addChat(){
   this.chats.push("Heip") //need an input box to define new chat
 }

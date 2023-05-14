@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { faGhost } from '@fortawesome/free-solid-svg-icons';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { JwksValidationHandler, OAuthService } from 'angular-oauth2-oidc';
+import { authConfig } from 'src/app/auth.config';
 
 
 @Component({
@@ -15,7 +17,9 @@ user = {
   username: '',
   password: ''
 };
-constructor(private router: Router){ }
+constructor(private router: Router, private oauthService: OAuthService) {
+  this.configure();
+}
 onSubmit(form: NgForm){
   if (form.valid){
     //Handle form submission here
@@ -27,4 +31,23 @@ onSubmit(form: NgForm){
     //need method to validate user and then send to Spring
   }
 }
+
+private configure() {
+  this.oauthService.configure(authConfig);
+  this.oauthService.tokenValidationHandler = new JwksValidationHandler();
+  this.oauthService.loadDiscoveryDocumentAndTryLogin();
+}
+get isLoggedIn() {
+  return !!this.oauthService.getIdToken();
+}
+
+handleLoginClick(){
+  if(this.isLoggedIn){
+     this.oauthService.logOut()
+     this.router.navigate(['/']);
+  } else {
+    this.oauthService.initLoginFlow();
+    this.router.navigate(['/messenger-main']); 
+  }
+ }
 }

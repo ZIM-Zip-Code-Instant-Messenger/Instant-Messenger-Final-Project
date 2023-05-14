@@ -9,10 +9,10 @@ import { MessengerMainComponent } from 'src/app/components/messenger-main/messen
 import { MessengerSidebarComponent } from 'src/app/components/messenger-sidebar/messenger-sidebar.component';
 import { MessengerTextboxComponent } from 'src/app/components/messenger-textbox/messenger-textbox.component';
 import { FormsModule } from '@angular/forms';
-import { CreateAccountComponent } from './components/create-account/create-account.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HttpClientModule } from '@angular/common/http';
 import { RootLevelService } from 'src/services/root-level.service';
+
 
 import { OAuthModule } from "angular-oauth2-oidc";
 
@@ -24,8 +24,7 @@ import { OAuthModule } from "angular-oauth2-oidc";
       LoginComponent,
       MessengerMainComponent,
       MessengerSidebarComponent,
-     
-      CreateAccountComponent,
+      BaseComponent,
       MessengerTextboxComponent
   ],
   imports: [
